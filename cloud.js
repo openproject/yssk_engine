@@ -6,3 +6,10 @@ var AV = require('leanengine');
 AV.Cloud.define('hello', function(request) {
   return 'pppp';
 });
+
+AV.Cloud.beforeSave('zdata_news', function(request) {
+
+  var news = request.object;
+
+   console.log('zdata_news:' + news.title);
+});
