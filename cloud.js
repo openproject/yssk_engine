@@ -11,5 +11,5 @@ AV.Cloud.beforeSave('zdata_news', function(request) {
 
   var news = request.object;
 
-   console.log('zdata_news:' + news.title);
+   console.log('zdata_news:' + news.get('title'));
 });
