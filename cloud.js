@@ -8,16 +8,9 @@ AV.Cloud.define('hello', function(request) {
 });
 
 /**
- * 定时整理一些数据
- */
-AV.Cloud.define('adjust_data_category', function(request) {
-    return 'ddd';
-});
-
-/**
  * 同步 zdata_news 到正式 news 表中
  */
-AV.Cloud.afterSave('zdata_news', function(request) {
+AV.Cloud.beforeSave('zdata_news', function(request) {
 
   var zdata_news = request.object;
   zdata_news.set('sync', false);
@@ -37,6 +30,7 @@ AV.Cloud.afterSave('zdata_news', function(request) {
   var ext_app = zdata_news.get('ext_app');
   var ext_category = zdata_news.get('ext_category');
 
+  console.log('=======category:' + ext_category);
   var category_id = 10000;
   if (ext_app == '天天快报') {
       if (ext_category == '社会') {
@@ -107,6 +101,7 @@ AV.Cloud.afterSave('zdata_news', function(request) {
         category_id = 10000;
       }
   }
+  console.log('=======category id: ' + category_id);
 
   var News = AV.Object.extend('news_list');
   var news = new News();
