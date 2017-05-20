@@ -30,7 +30,6 @@ AV.Cloud.beforeSave('zdata_news', function(request) {
   var ext_app = zdata_news.get('ext_app');
   var ext_category = zdata_news.get('ext_category');
 
-  console.log('=======category:' + ext_category);
   var category_id = 10000;
   if (ext_app == '天天快报') {
       if (ext_category == '社会') {
@@ -97,11 +96,33 @@ AV.Cloud.beforeSave('zdata_news', function(request) {
         category_id = 33;
       } else if (ext_category == '工作') {
         category_id = 34;
-      } else if (ext_category == '其他') {
+      } else {
         category_id = 10000;
       }
+  } else if (ext_app == '视频头条') {
+      category_id = 1999;
+      if (ext_category == '搞笑') {
+        category_id = 1001;
+      } else if (ext_category == '美女') {
+        category_id = 1002;
+      } else if (ext_category == '微电影') {
+        category_id = 1003;
+      } else if (ext_category == '音乐') {
+        category_id = 1004;
+      } else if (ext_category == '娱乐') {
+        category_id = 1005;
+      } else if (ext_category == '纪录') {
+        category_id = 1006;
+      } else if (ext_category == '体育') {
+        category_id = 1007;
+      } else if (ext_category == '生活') {
+        category_id = 1008;
+      } else if (ext_category == '社会') {
+        category_id = 1009;
+      } else if (ext_category == '其他') {
+        category_id = 1999;
+      }
   }
-  console.log('=======category id: ' + category_id);
 
   var News = AV.Object.extend('news_list');
   var news = new News();
